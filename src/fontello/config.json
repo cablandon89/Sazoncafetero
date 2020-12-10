@@ -59,6 +59,12 @@
       "css": "home",
       "code": 59397,
       "src": "fontawesome"
+    },
+    {
+      "uid": "9bdc80f58999873c5a8079ad2d7f4143",
+      "css": "cup",
+      "code": 59399,
+      "src": "entypo"
     }
   ]
 }

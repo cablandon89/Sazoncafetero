@@ -1,5 +1,4 @@
 function Header() {
-
     return (
         <header>
           <div className="contenedor" >
@@ -12,7 +11,16 @@ function Header() {
               <a href="#"><i className="icon-doc-text"/> Carta</a>
               <a href="#"><i className="icon-bullhorn"/> Promociones</a>
               <a href="#"><i className="icon-contacts"/> Contacto</a>
-              <a href="#"><i className="icon-basket"/> Carrito</a>
+              <a href="#"><i className="icon-basket carrito"/> Carrito <sup className="badge">&nbsp; 8 &nbsp;</sup>
+               <div id="myDropdown" className="dropdown-content">
+                <div className="itemCard">
+                  <img src="https://placehold.it/50x50" alt="product"/>
+                  <span className='description'>Producto</span>
+                  <span className='amount'>3</span>
+                </div>
+ 
+              </div>
+              </a>
             </nav>
           </div>
       </header>
