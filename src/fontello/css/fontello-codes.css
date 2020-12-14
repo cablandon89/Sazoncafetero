@@ -5,7 +5,9 @@
 .icon-contacts:before { content: '\e803'; } /* '' */
 .icon-bullhorn:before { content: '\e804'; } /* '' */
 .icon-home:before { content: '\e805'; } /* '' */
+.icon-minus:before { content: '\e806'; } /* '' */
 .icon-cup:before { content: '\e807'; } /* '' */
+.icon-plus:before { content: '\e808'; } /* '' */
 .icon-menu:before { content: '\f0c9'; } /* '' */
 .icon-food:before { content: '\f0f5'; } /* '' */
 .icon-doc-text:before { content: '\f0f6'; } /* '' */

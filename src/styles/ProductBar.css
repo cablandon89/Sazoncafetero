@@ -1,0 +1,12 @@
+#ProductBar h3, h4, h5, .agregar .addToCart{text-align: center;}
+#ProductBar{margin-top: 50px;}
+
+#ProductBar .contenedor{display: flex; justify-content: center; flex-wrap: wrap}
+
+#ProductBar article{margin: 15px; }
+
+.agregar i{cursor: pointer}
+.agregar input{padding: 5px; text-align: center;}
+
+.addToCart{width: 100%; margin-top: 5px; padding: 7px; border: none; border-radius: 5px; cursor: pointer; color: white; background-color: #333; transition: .3s }
+.addToCart:hover{ color: black; background-color: #ccc }

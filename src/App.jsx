@@ -1,20 +1,21 @@
 //Estilos
 import "./styles/App.css";
 import "./styles/header.css";
-import "./styles/Card.css";
+import "./styles/Cart.css";
 //Iconos
 import "./fontello/css/fontello.css"
 
-import ItemCard from "./components/card/itemcard.jsx";
+
 import Header from "./components/header.jsx";
+import ProductBar from "./components/product/ProductBar.jsx";
 
 
 function App() {
   return (
     <>
      <Header/>
-     <i className="icon-basket" style={{color:'#ccc'}} />
-     <p>Otro subtitulo</p>
+     <ProductBar/>
+
     </>
   );
 }
