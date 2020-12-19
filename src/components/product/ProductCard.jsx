@@ -1,7 +1,7 @@
 import {useState} from 'react';
 
 const ProductCard = ({description, amount, img, stock}) => {
-  //Agregar productos al contador
+  //Agregar contador de productos
   const [valueAdd, setValueAdd] = useState(1);
   
   const restar = () => {
@@ -21,10 +21,10 @@ const ProductCard = ({description, amount, img, stock}) => {
       <h4>{description}</h4>
       <h5>$ {amount} COP</h5>
       <div className="agregar">
-        <i className="icon-minus" onClick={restar}/><input type="text" id="cantidad" value={valueAdd}/><i className="icon-plus" onClick={sumar}/>
+        <i className="icon-minus" onClick={restar}/><input type="text" value={valueAdd} readOnly/><i className="icon-plus" onClick={sumar}/>
       </div>
       <button className="addToCart">Agregar al carrito</button>
-    </article>
+    </article> 
   )
 }
 
