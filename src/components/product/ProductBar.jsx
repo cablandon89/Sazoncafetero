@@ -9,28 +9,28 @@ const ProductBar = () => {
   const productos = [
     {
       id: 1,
-      description: 'Bandeja Paisa',
+      name: 'Bandeja Paisa',
       amount: 300,
       img: 'https://placehold.it/200x200',
       stock: 5,
     },
     {
       id: 2,
-      description: 'Mondongo',
+      name: 'Mondongo',
       amount: 200,
       img: 'https://placehold.it/200x200',
       stock: 7,
     },
     {
       id: 3,
-      description: 'Sancocho',
+      name: 'Sancocho',
       amount: 100,
       img: 'https://placehold.it/200x200',
       stock: 10,
     },
     {
       id: 4,
-      description: 'Trucha al ajillo',
+      name: 'Trucha al ajillo',
       amount: 300,
       img: 'https://placehold.it/200x200',
       stock: 3,
@@ -76,7 +76,7 @@ const ProductBar = () => {
                 products.map(product => 
                               <ProductCard 
                                 key={product.id} 
-                                description={product.description} 
+                                name={product.name} 
                                 amount={product.amount} 
                                 img={product.img}
                                 stock={product.stock}>
