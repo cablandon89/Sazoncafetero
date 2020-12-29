@@ -1,8 +1,17 @@
 import {useState} from 'react';
+import {useParams} from 'react-router-dom';
 
 import "../../styles/ProductDetail.css";
 
-const ProductDetail = ({product}) => {
+const ProductDetail = ({products}) => {
+  const {id} = useParams();
+  var product = [];
+  if(id == undefined){
+    product = products[0]
+  }else{
+    product = products[id-1]
+  }
+  
   const [valueAdd, setValueAdd] = useState(1);
   
   const restar = () => {
@@ -20,10 +29,10 @@ const ProductDetail = ({product}) => {
     <section id="ProductDetail">
       <h3>Detalle del producto</h3>
       <div className="contenedor">
-         <div ClassName="detail">
+         <div className="detail">
            <img src={product.img} alt=""/>
          </div>
-         <div ClassName="detail">
+         <div className="detail">
            <p><b>Nombre:</b> {product.name}</p>
            <p><b>Descripción:</b> {product.description}</p>
            <p><b>Precio:</b> {product.amount}</p>
