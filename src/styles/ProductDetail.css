@@ -8,3 +8,6 @@
 
 .addToCart{margin-top: 5px; padding: 7px; border: none; border-radius: 5px; cursor: pointer; color: white; background-color: #333; transition: .3s }
 .addToCart:hover{ color: black; background-color: #ccc }
+
+.hide{display: none}
+.show{display: block}

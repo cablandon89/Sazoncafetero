@@ -12,6 +12,7 @@ import Header from "./components/header.jsx";
 import Banner from "./components/banner/Banner.jsx";
 import ProductBar from "./components/product/ProductBar.jsx";
 import ProductDetail from "./components/product/ProductDetail.jsx";
+import Cart from "./components/cart/Cart.jsx";
 
 
 function App() {
@@ -72,6 +73,9 @@ function App() {
         </Route>
         <Route path="/detalle/:id?">
           <ProductDetail products={productos}/>
+        </Route>
+        <Route path="/cart">
+          <Cart/>
         </Route>
         <Route path="*">
           <Banner/>
