@@ -1,18 +1,19 @@
-//import {useEffect, useState} from "react";
-import {BrowserRouter, Switch, Route, useParams} from 'react-router-dom';
+import {useState} from "react";
+import {BrowserRouter, Switch, Route} from 'react-router-dom';
 //Estilos
 import "./styles/App.css";
 import "./styles/header.css";
 import "./styles/Cart.css";
 //Iconos
 import "./fontello/css/fontello.css"
-
-
+//Componentes
 import Header from "./components/header.jsx";
 import Banner from "./components/banner/Banner.jsx";
 import ProductBar from "./components/product/ProductBar.jsx";
 import ProductDetail from "./components/product/ProductDetail.jsx";
 import Cart from "./components/cart/Cart.jsx";
+//Store - context
+import {Store} from './store';
 
 
 function App() {
@@ -51,38 +52,35 @@ function App() {
     }
   ]
   
-   /*product ?
-       
-     
-       <ProductDetail product={product}/> :
-       <>
-        <br/><br/><br/>
-        <p>Cargando producto...</p>
-       </>*/
-  
+  const [data, setData] = useState({
+    items:[],
+    cantidades:[]
+  });
   return (
-    <BrowserRouter>
-      <Header/>
-      <Switch>
-        <Route exact path="/">
-          <Banner/>
-          <ProductBar productos={productos}/>
-        </Route>
-        <Route path="/carta">
-          <ProductBar productos={productos}/>
-        </Route>
-        <Route path="/detalle/:id?">
-          <ProductDetail products={productos}/>
-        </Route>
-        <Route path="/cart">
-          <Cart/>
-        </Route>
-        <Route path="*">
-          <Banner/>
-          <ProductBar productos={productos}/>
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <Store.Provider value={[data, setData]}>
+      <BrowserRouter>
+        <Header/>
+        <Switch>
+          <Route exact path="/">
+            <Banner/>
+            <ProductBar productos={productos}/>
+          </Route>
+          <Route path="/carta">
+            <ProductBar productos={productos}/>
+          </Route>
+          <Route path="/detalle/:id?">
+            <ProductDetail products={productos}/>
+          </Route>
+          <Route path="/cart">
+            <Cart/>
+          </Route>
+          <Route path="*">
+            <Banner/>
+            <ProductBar productos={productos}/>
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </Store.Provider>
   );
 }
 

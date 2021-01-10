@@ -1,10 +1,11 @@
-import {useState} from 'react';
+import {useState, useContext} from 'react';
 import {Link} from 'react-router-dom';
+import {Store} from '../../store';
 
 const ProductCard = ({product}) => {
   //Agregar contador de productos
   const [valueAdd, setValueAdd] = useState(1);
-  
+  const [data, setData] = useContext(Store);
   const restar = () => {
     if(valueAdd > 1){
       setValueAdd(valueAdd -1)         
@@ -16,6 +17,32 @@ const ProductCard = ({product}) => {
       setValueAdd(valueAdd +1)         
     } 
   }
+  
+  const isInCart = (item) => {
+    var index = -1;
+    for(var i = 0;i<data.items.length;i++){
+      if(data.items[i].id == item.id){
+        index = i;
+      }
+    }
+    return index;
+  }
+  
+  const addToCart = () => {
+    if(isInCart(product) >= 0){
+      setData({
+        ...data,
+        cantidades: [data.cantidades[isInCart(product)] + valueAdd], 
+      })
+    }else{
+      setData({
+        ...data, 
+        cantidades: [...data.cantidades, valueAdd],
+        items: [...data.items, product],
+      });
+    }
+  }
+  
   return (
     <article>
       <Link to={`/detalle/${product.id}`}><img src={product.img} alt="product" width="200px" height="200px"/></Link>
@@ -24,7 +51,7 @@ const ProductCard = ({product}) => {
       <div className="agregar">
         <i className="icon-minus" onClick={restar}/><input type="text" value={valueAdd} readOnly/><i className="icon-plus" onClick={sumar}/>
       </div>
-      <button className="addToCart">Agregar al carrito</button>
+      <button className="addToCart" onClick={addToCart}>Agregar al carrito</button>
       <Link to={`/detalle/${product.id}`}>Detalles</Link>
     </article> 
   )
