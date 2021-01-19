@@ -1,29 +1,29 @@
 import {useState,useEffect} from 'react';
 
 import ProductCard from "../product/ProductCard.jsx";
-
+import {getFirestore} from '../../db';
 import "../../styles/ProductBar.css";
 
-const ProductBar = ({productos}) => {
+const ProductBar = () => {
   //State para esperar los productos
   const [products, setProducts] = useState([]);
-    
-  const llamado = new Promise((resolve, reject) => {
-    if(true){
-      setTimeout(() => {
-        resolve(productos);
-      }, 2000)
-    }else{
-      reject('false');
-    }
-  });
+  const db = getFirestore();
+  
+  const llamado = () => {
+    db.collection('productos').where("outstanding", "==", true).get()
+    .then(docs => {
+      let arr = [];
+      docs.forEach(doc => {
+        arr.push({id: doc.id, data: doc.data()})
+      })
+      setProducts(arr);
+    })
+    .catch(e => console.log(e));
+  };
   
   useEffect(() => {
-    llamado
-      .then(resp => setProducts(resp))
-      .catch(error => console.log('No se pudieron cargar los productos'));
-  },[])
-  
+    llamado();
+  }, [])
   return (
     <section id="ProductBar">
       {
@@ -33,7 +33,7 @@ const ProductBar = ({productos}) => {
             <div className="contenedor">
              {
                 products.map(product => 
-                  <ProductCard key={product.id} product={product} ></ProductCard>
+                  <ProductCard key={product.id} id={product.id} product={product.data} ></ProductCard>
                 )
               }
 

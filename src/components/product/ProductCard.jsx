@@ -2,7 +2,7 @@ import {useState, useContext} from 'react';
 import {Link} from 'react-router-dom';
 import {Store} from '../../store';
 
-const ProductCard = ({product}) => {
+const ProductCard = ({id,product}) => {
   //Agregar contador de productos
   const [valueAdd, setValueAdd] = useState(1);
   const [data, setData] = useContext(Store);
@@ -45,14 +45,14 @@ const ProductCard = ({product}) => {
   
   return (
     <article>
-      <Link to={`/detalle/${product.id}`}><img src={product.img} alt="product" width="200px" height="200px"/></Link>
+      <Link to={`/detalle/${id}`}><img src={`assets/img/${id}.jpg`} alt="product" width="200px" height="200px"/></Link>
       <h4>{product.name} </h4>
       <h5>$ {product.amount} COP</h5>
       <div className="agregar">
         <i className="icon-minus" onClick={restar}/><input type="text" value={valueAdd} readOnly/><i className="icon-plus" onClick={sumar}/>
       </div>
       <button className="addToCart" onClick={addToCart}>Agregar al carrito</button>
-      <Link to={`/detalle/${product.id}`}>Detalles</Link>
+      <Link to={`/detalle/${id}`}>Detalles</Link>
     </article> 
   )
 }

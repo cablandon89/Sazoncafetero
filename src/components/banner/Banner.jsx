@@ -1,11 +1,11 @@
 import "../../styles/Banner.css";
-import img from '../../assets/img/restaurante.png'
+//import img from '../../assets/img/restaurante.png'
 
 const Banner = () => {
   
   return (
     <section id="banner">
-      <img src={img} alt="banner"/>
+      <img src={`assets/img/banner.png`} alt="banner"/>
     </section>
   )
 }

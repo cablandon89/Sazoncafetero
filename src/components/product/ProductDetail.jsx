@@ -1,20 +1,28 @@
-import {useState, useContext} from 'react';
+import {useState, useContext, useEffect} from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 
 import {Store} from '../../store';
+import {getFirestore} from '../../db';
 
 import "../../styles/ProductDetail.css";
 
-const ProductDetail = ({products}) => {
+const ProductDetail = () => {
+  const db = getFirestore();
   const {id} = useParams();
   const history = useHistory();
-  var product = [];
+  var docp = db.collection("productos").doc(id);
+  const [product, setProduct] = useState(null);
   const [data, setData] = useContext(Store);
-  if(id == undefined){
-    product = products[0]
-  }else{
-    product = products[id-1]
-  }
+  
+  const llamado = () => {
+    docp.get().then(function(doc){
+      if(doc.exists){
+        setProduct(doc.data());
+      }
+    }).catch(function(error) {
+      console.log("No se pudo obtener el producto", error);
+    });
+  };
   
   const [valueAdd, setValueAdd] = useState(1);
   
@@ -58,17 +66,25 @@ const ProductDetail = ({products}) => {
   const goCart = () => {
     history.push("/cart");
   }
+  
+  useEffect(() => {
+    llamado();
+  }, [])
+  
   return (
     <section id="ProductDetail">
+     { 
+        product != null ?
+      <>
       <h3>Detalle del producto</h3>
       <div className="contenedor">
          <div className="detail">
-           <img src={product.img} alt=""/>
+          <img src={`/assets/img/${id}.jpg`} alt="product" width="400px" height="400px"/>
          </div>
          <div className="detail">
            <p><b>Nombre:</b> {product.name}</p>
            <p><b>Descripción:</b> {product.description}</p>
-           <p><b>Precio:</b> {product.amount}</p>
+           <p><b>Precio:</b>$ {product.amount} COP</p>
            <p><b>Cantidad disponible:</b> {product.stock}</p>
            <p><div className="agregar">
             <i className="icon-minus" onClick={restar}/><input type="text" value={valueAdd} readOnly/><i className="icon-plus" onClick={sumar}/>
@@ -77,6 +93,9 @@ const ProductDetail = ({products}) => {
          </div>
       </div>
       <h3>Platos recomendados</h3>
+      </>:
+      <h3>Producto no encontrado</h3>
+     }
     </section>
   )
 }
