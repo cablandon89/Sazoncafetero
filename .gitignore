@@ -21,7 +21,6 @@
 
 #Propios
 db.js
-/src/db
 
 npm-debug.log*
 yarn-debug.log*
