@@ -1,5 +1,5 @@
 import {useState, useContext, useEffect} from 'react';
-import {useParams, useHistory} from 'react-router-dom';
+import {Link, useParams, useHistory} from 'react-router-dom';
 
 import {Store} from '../../store';
 import {getFirestore} from '../../db';
@@ -9,7 +9,7 @@ import "../../styles/ProductDetail.css";
 const ProductDetail = () => {
   const db = getFirestore();
   const {id} = useParams();
-  const history = useHistory();
+  
   var docp = db.collection("productos").doc(id);
   const [product, setProduct] = useState(null);
   const [data, setData] = useContext(Store);
@@ -63,9 +63,7 @@ const ProductDetail = () => {
     }
   }
   
-  const goCart = () => {
-    history.push("/cart");
-  }
+  
   
   useEffect(() => {
     llamado();

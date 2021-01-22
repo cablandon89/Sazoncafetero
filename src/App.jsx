@@ -22,6 +22,7 @@ function App() {
   
   const [data, setData] = useState({
     items:[],
+    id:[],
     cantidades:[]
   });
   return (

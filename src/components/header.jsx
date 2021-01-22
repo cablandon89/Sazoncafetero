@@ -1,8 +1,7 @@
 import {useState, useContext} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useParams, useHistory} from 'react-router-dom';
 import ItemCart from "../components/cart/itemcart.jsx";
 import {Store} from '../store';
-
 const Header = () => {
   //abrir o cerrar menu resp
   const [ocMenu, setOcMenu] = useState(false);
@@ -21,6 +20,10 @@ const Header = () => {
   
   const retirarProducto = (item) => {
     console.log('retirar producto');
+  }
+  const history = useHistory();
+  const goCart = () => {
+    history.push("/cart");
   }
   
   const [data, setData] = useContext(Store);
@@ -52,7 +55,7 @@ const Header = () => {
               )
             }</div>
            
-          <button onClick={openSide} className="">Terminar la compra</button>
+          <button onClick={goCart} className="">Terminar la compra</button>
         </div>
       </div>
     </header>
