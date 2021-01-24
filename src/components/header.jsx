@@ -10,6 +10,7 @@ const Header = () => {
   
   //Sumar el array de cantidades 
   const sumatoria = (a,b)=>a+b;
+  const [data, setData] = useContext(Store);
   const openMenu = () => {
     setOcMenu(!ocMenu);  
   }
@@ -19,14 +20,20 @@ const Header = () => {
   }
   
   const retirarProducto = (item) => {
-    console.log('retirar producto');
-  }
-  const history = useHistory();
-  const goCart = () => {
-    history.push("/cart");
+//    console.log(data.items[item]);
   }
   
-  const [data, setData] = useContext(Store);
+  const history = useHistory();
+  const goCart = () => {
+    history.push("/pago");
+  }
+  
+  const formatterPeso = new Intl.NumberFormat('es-CO', {
+    style: 'currency',
+    currency: 'COP',
+    minimumFractionDigits: 0
+  });
+ 
   return (
     <header>
       <div className="contenedor" >
@@ -47,14 +54,16 @@ const Header = () => {
            <div>{
               data.items.map((item,index) => 
                 <div className="itemCart" key={index}>
-                  <img src="https://placehold.it/50x50" alt="img"/>
+                 
+                  <img src={`/assets/img/${data.id[index]}.jpg`} alt="img" width="50px" height="50px"/>
                   <p>{item.name}</p>
-                  <p>x {data.cantidades[index]}</p>
+                  <p>x &nbsp; {data.cantidades[index]}</p>
+                  <p> = &nbsp; {formatterPeso.format(data.cantidades[index] * item.amount)}</p>
                   <i onClick={retirarProducto(index)} className="icon-cancel"></i> 
                 </div>            
               )
             }</div>
-           
+           <div className="itemCart"><p>Total: {formatterPeso.format(data.total)}</p></div>
           <button onClick={goCart} className="">Terminar la compra</button>
         </div>
       </div>

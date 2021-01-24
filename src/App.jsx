@@ -13,6 +13,7 @@ import ProductBar from "./components/product/ProductBar.jsx";
 import Carta from "./components/menu/Menu.jsx";
 import ProductDetail from "./components/product/ProductDetail.jsx";
 import Cart from "./components/cart/Cart.jsx";
+import Checkout from "./components/checkout";
 //Store - context
 import {Store} from './store';
 
@@ -23,7 +24,8 @@ function App() {
   const [data, setData] = useState({
     items:[],
     id:[],
-    cantidades:[]
+    cantidades:[],
+    total:0
   });
   return (
     <Store.Provider value={[data, setData]}>
@@ -42,6 +44,9 @@ function App() {
           </Route>
           <Route path="/cart">
             <Cart/>
+          </Route>
+          <Route path="/pago">
+            <Checkout/>
           </Route>
           <Route path="*">
             <Banner/>

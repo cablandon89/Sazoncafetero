@@ -26,7 +26,7 @@ const ProductCard = ({id,product}) => {
   
   const isInCart = (id) => {
     var index = -1;
-    for(var i = 0;i<data.items.length;i++){
+    for(var i = 0;i<data.id.length;i++){
       if(data.id[i] == id){
         index = i;
       }
@@ -36,9 +36,14 @@ const ProductCard = ({id,product}) => {
   
   const addToCart = () => {
     if(isInCart(id) >= 0){
-      setData({
-        ...data,
-        cantidades: [data.cantidades[isInCart(id)] + valueAdd], 
+       let cantidadesn = data.cantidades;
+       let totaln = data.total - (product.amount * data.cantidades[isInCart(id)]); 
+       cantidadesn[isInCart(id)] += valueAdd ;
+       totaln = totaln + (product.amount * cantidadesn[isInCart(id)]);
+       setData({
+         ...data,
+         cantidades: cantidadesn,
+         total: totaln,
       })
     }else{
       setData({
@@ -46,14 +51,22 @@ const ProductCard = ({id,product}) => {
         id:[...data.id, id],
         cantidades: [...data.cantidades, valueAdd],
         items: [...data.items, product],
+        total: data.total + (product.amount * valueAdd)
       });
     }
   }
+  
+  const formatterPeso = new Intl.NumberFormat('es-CO', {
+    style: 'currency',
+    currency: 'COP',
+    minimumFractionDigits: 0
+  });
+  
   return (
     <article>
       <Link to={`/detalle/${id}`}><img src={`assets/img/${id}.jpg`} alt="product" width="200px" height="200px"/></Link>
       <h4>{product.name} </h4>
-      <h5>$ {product.amount} COP</h5>
+      <h5>{formatterPeso.format(product.amount)} COP</h5>
       <div className="agregar">
         <i className="icon-minus" onClick={restar}/><input type="text" value={valueAdd} readOnly/><i className="icon-plus" onClick={sumar}/>
       </div>

@@ -9,3 +9,8 @@
 
 .sidebar_open{transform: translateX(100%)}
 .sidebar_close{transform: translateX(200%)}
+
+.itemCartV{display: flex; width: 100%; height: 50px; align-items: center; transition: 0.3s; justify-content: center;}
+.itemCartV p{margin-right: 10px; }
+/*.checkout{width: 100%; margin-top: 5px; padding: 7px; border: none; border-radius: 5px; cursor: pointer; color: white; background-color: #333; transition: .3s }
+.checkout:hover{ color: black; background-color: #ccc }*/

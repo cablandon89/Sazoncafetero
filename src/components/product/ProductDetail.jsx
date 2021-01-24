@@ -38,10 +38,10 @@ const ProductDetail = () => {
     } 
   }
   
-  const isInCart = (item) => {
+  const isInCart = (id) => {
     var index = -1;
-    for(var i = 0;i<data.items.length;i++){
-      if(data.items[i].id == item.id){
+    for(var i = 0;i<data.id.length;i++){
+      if(data.id[i] == id){
         index = i;
       }
     }
@@ -49,21 +49,32 @@ const ProductDetail = () => {
   }
   
   const addToCart = () => {
-    if(isInCart(product) >= 0){
-      setData({
-        ...data,
-        cantidades: [data.cantidades[isInCart(product)] + valueAdd], 
+    if(isInCart(id) >= 0){
+       let cantidadesn = data.cantidades;
+       let totaln = data.total - (product.amount * data.cantidades[isInCart(id)]); 
+       cantidadesn[isInCart(id)] += valueAdd ;
+       totaln = totaln + (product.amount * cantidadesn[isInCart(id)]);
+       setData({
+         ...data,
+         cantidades: cantidadesn,
+         total: totaln,
       })
     }else{
       setData({
         ...data, 
+        id:[...data.id, id],
         cantidades: [...data.cantidades, valueAdd],
         items: [...data.items, product],
+        total: data.total + (product.amount * valueAdd)
       });
     }
   }
   
-  
+  const formatterPeso = new Intl.NumberFormat('es-CO', {
+    style: 'currency',
+    currency: 'COP',
+    minimumFractionDigits: 0
+  });
   
   useEffect(() => {
     llamado();
@@ -82,7 +93,7 @@ const ProductDetail = () => {
          <div className="detail">
            <p><b>Nombre:</b> {product.name}</p>
            <p><b>Descripción:</b> {product.description}</p>
-           <p><b>Precio:</b>$ {product.amount} COP</p>
+           <p><b>Precio:</b>{formatterPeso.format(product.amount)} COP</p>
            <p><b>Cantidad disponible:</b> {product.stock}</p>
            <p><div className="agregar">
             <i className="icon-minus" onClick={restar}/><input type="text" value={valueAdd} readOnly/><i className="icon-plus" onClick={sumar}/>
@@ -92,7 +103,7 @@ const ProductDetail = () => {
       </div>
       <h3>Platos recomendados</h3>
       </>:
-      <h3>Producto no encontrado</h3>
+      <h3>Cargando información</h3>
      }
     </section>
   )

@@ -1,0 +1,9 @@
+#Checkout h3, h4, h5{text-align: center; padding: 5px;}
+#Checkout{margin-top: 50px;}
+#Checkout .contenedor{display: flex; justify-content: center; flex-wrap: wrap}
+#Checkout form { display: flex; flex-direction: column; width: 50%; }
+form input, select { margin-top: 10px; padding: 7px; border-radius: 5px; }
+form button{margin-top: 10px; padding: 7px; border-radius: 5px; cursor: pointer; color: white; background-color: #333; transition: .3s}
+form button:hover{color: black; background-color: #ccc}
+.inputshow{display: block}
+.inputhide{display:none}

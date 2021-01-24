@@ -39,7 +39,7 @@ const ProductBar = () => {
 
             </div>
           </>:
-          <h3>Cargando productos...</h3>
+          <h3>Cargando elementos</h3>
       }
       
     </section>
