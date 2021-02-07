@@ -38,6 +38,11 @@ const Checkout = () => {
         id: data.id[index],
       }
       items.push(tmp);
+      db.collection('productos').doc(data.id[index]).update({
+          stock: data.items[index].stock - data.cantidades[index],
+      })
+      .then(() => console.log(''))
+      .catch(error => console.log(error));
     });
     const compra = {
       total:data.total,
@@ -47,7 +52,13 @@ const Checkout = () => {
     }
     db.collection('pedidos').add(compra)
     .then(({id}) => {
-        setIdPedido(id);
+      setIdPedido(id);
+      setData({
+        items:[],
+        id:[],
+        cantidades:[],
+        total:0
+      });
     })
     .catch(e => console.log(e));
   }

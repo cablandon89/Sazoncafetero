@@ -1,4 +1,4 @@
-import {useState, useContext} from 'react';
+import {useState, useContext, useEffect} from 'react';
 import {Link, useParams, useHistory} from 'react-router-dom';
 import ItemCart from "../components/cart/itemcart.jsx";
 import {Store} from '../store';
@@ -20,13 +20,18 @@ const Header = () => {
   }
   
   const retirarProducto = (item) => {
-//    console.log(data.items[item]);
+    console.log(data.items[item]);
   }
   
   const history = useHistory();
   const goCart = () => {
+    setOcCart(false);
     history.push("/pago");
   }
+  
+  useEffect(() =>{
+    retirarProducto();
+  });
   
   const formatterPeso = new Intl.NumberFormat('es-CO', {
     style: 'currency',
@@ -44,8 +49,8 @@ const Header = () => {
         <nav className={`menu ${ocMenu ? 'menuopen' : 'menuclose'}`} >
           <Link to="/"><i className="icon-home"/> Inicio</Link>
           <Link to="/carta"><i className="icon-doc-text"/> Carta</Link>
-          <a href="#"><i className="icon-bullhorn"/> Promociones</a>
-          <a href="#"><i className="icon-contacts"/> Contacto</a>
+          <Link to="/rastreo"><i className="icon-motorcycle"/> Rastrear mi pedido</Link>
+          <Link to="/contacto"><i className="icon-contacts"/> Contacto</Link>
           <a href="#" onClick={(data.cantidades.length > 0) ? openSide : null}><i className="icon-basket carrito"/> Carrito {(data.cantidades.length > 0) ? <span className="badge">{data.cantidades.reduce(sumatoria)}</span> : ''} </a>
         </nav>
         {/* Sidebar Menu */}
@@ -59,7 +64,7 @@ const Header = () => {
                   <p>{item.name}</p>
                   <p>x &nbsp; {data.cantidades[index]}</p>
                   <p> = &nbsp; {formatterPeso.format(data.cantidades[index] * item.amount)}</p>
-                  <i onClick={retirarProducto(index)} className="icon-cancel"></i> 
+                  {/*<i type="button" onClick={retirarProducto(index)} className="icon-cancel"></i>*/} 
                 </div>            
               )
             }</div>

@@ -47,6 +47,12 @@
       "css": "bullhorn",
       "code": 59396,
       "src": "modernpics"
+    },
+    {
+      "uid": "326dd5dc5899787161184614d04a50b9",
+      "css": "motorcycle",
+      "code": 61980,
+      "src": "fontawesome"
     }
   ]
 }

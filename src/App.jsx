@@ -14,6 +14,8 @@ import Carta from "./components/menu/Menu.jsx";
 import ProductDetail from "./components/product/ProductDetail.jsx";
 import Cart from "./components/cart/Cart.jsx";
 import Checkout from "./components/checkout";
+import Tracking from "./components/tracking";
+import Contact from "./components/contact";
 //Store - context
 import {Store} from './store';
 
@@ -47,6 +49,12 @@ function App() {
           </Route>
           <Route path="/pago">
             <Checkout/>
+          </Route>
+          <Route path="/rastreo">
+            <Tracking/>
+          </Route>
+          <Route path="/contacto">
+            <Contact/>
           </Route>
           <Route path="*">
             <Banner/>
