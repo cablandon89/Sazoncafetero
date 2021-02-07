@@ -1,6 +1,7 @@
 # Sazón cafetero restaurante
 
 Ecomerce del restaurante [Sazón cafetero pereira](https://sazoncafetero.vercel.app/).
+El ecomerce está contruido en react.
 
 ## Comandos habilitados
 
@@ -14,20 +15,15 @@ Abre [http://localhost:3000](http://localhost:3000) En el navegador.
 Los cambios se reflejan automáticamente en el navegador.\
 Los errores los puede ver en el navegador o en la consola.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 ### `npm run build`
 
 Compila la aplicación para producción en la carpeta `build`. \
 Ajusta React en el modo de producción y optimiza la compilación para obtener el mejor rendimiento.
 
-¡La aplicación!
+¡La aplicación está lista para usar!
 
-[más información](https://facebook.github.io/create-react-app/docs/deployment) 
+[Más información](https://facebook.github.io/create-react-app/docs/deployment) 
 
-### librerias incluidas
+## librerias incluidas
 - Fontello
 
