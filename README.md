@@ -1,7 +1,7 @@
 # Sazón cafetero restaurante
 
 Ecomerce del restaurante [Sazón cafetero pereira](https://sazoncafetero.vercel.app/).
-El ecomerce está contruido en react.
+El ecomerce está construido en react.
 
 ## Comandos habilitados
 
